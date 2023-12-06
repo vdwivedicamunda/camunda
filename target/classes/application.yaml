@@ -1,0 +1,19 @@
+camunda.bpm.admin-user:
+  id: demo
+  password: demo
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/camunda
+    username: root
+    password: Dwdi@10910
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  logging:
+   level:
+     org.springframework.web: INFO
+     com.example.workflow: INFO
+     org.hibernate: INFO 
+     
