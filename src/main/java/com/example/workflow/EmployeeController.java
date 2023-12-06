@@ -50,12 +50,7 @@ public class EmployeeController {
     	processInstance = runtimeService.startProcessInstanceByKey("new_emp");
 		processInstanceId = processInstance.getProcessInstanceId();
 		System.out.println("Process id is Null");
-		processInstanceId = null;
-		if(processInstanceId == null)
-		{
-			throw new EmployeeNotFoundException("Exception getting");
-		}
-    	System.out.println("please add employee details");
+		System.out.println("please add employee details");
     	//logger.debug("Debug Logger Enabled");
     	//logger.info("Logger Enabled please add employee details");
     	 return new ResponseEntity < > ("Testing Sucessful", HttpStatus.OK);
