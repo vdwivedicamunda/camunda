@@ -40,20 +40,22 @@ public class EmployeeController {
 	
 	@Autowired
 	RuntimeService runtimeService;
+	@Autowired
+	EmailNotification emailNotification;
 
     public void victoryTask(String taskInstanceId) {
         taskService.complete(taskInstanceId);
     }
     
     @GetMapping("/add")
-	public ResponseEntity<?> add() {
+	public void add() {
     	processInstance = runtimeService.startProcessInstanceByKey("new_emp");
 		processInstanceId = processInstance.getProcessInstanceId();
-		System.out.println("Process id is Null");
+		//System.out.println("Process id is Null");
 		System.out.println("please add employee details");
     	//logger.debug("Debug Logger Enabled");
     	//logger.info("Logger Enabled please add employee details");
-    	 return new ResponseEntity < > ("Testing Sucessful", HttpStatus.OK);
+    	// return new ResponseEntity < > ("Testing Sucessful", HttpStatus.OK);
     	}
     
 	@PostMapping("/addEmployee")
@@ -64,13 +66,13 @@ public class EmployeeController {
 		System.out.println(employee.getOhrId());
 		System.out.println("====Employee Added====");
 		employeeRepo.save(employee);
-		/*
-		 * System.out.println(employeeRepo.findAll()); List<Task> taskList =
-		 * taskService.createTaskQuery().processInstanceId(processInstanceId).
-		 * orderByTaskCreateTime().desc().list(); taskInstanceId =
-		 * taskList.get(0).getId(); System.out.println("taskInstanceId "
-		 * +taskInstanceId); victoryTask(taskInstanceId);
-		 */
+		
+		  System.out.println(employeeRepo.findAll()); List<Task> taskList =
+		  taskService.createTaskQuery().processInstanceId(processInstanceId).
+		  orderByTaskCreateTime().desc().list(); taskInstanceId =
+		  taskList.get(0).getId(); System.out.println("taskInstanceId "
+		  +taskInstanceId); victoryTask(taskInstanceId);
+		 
 	}
 	
 	@PostMapping("/approval")
@@ -86,12 +88,13 @@ public class EmployeeController {
 			HashMap<String, String> arg1 = new HashMap<>();
 			arg1.put("approved", "yes");
 			runtimeService.setVariablesLocal(processInstanceId, arg1);
-			
+			emailNotification.execute("approved");
 		} else {
 			System.out.println("****Reject****");
 			HashMap<String, String> arg1 = new HashMap<>();
 			arg1.put("approved", "no");
 			runtimeService.setVariablesLocal(processInstanceId, arg1);
+			emailNotification.execute("rejected");
 		}
 		victoryTask(taskInstanceId);
 		

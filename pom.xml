@@ -23,8 +23,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-
-      <dependency>
+ <dependency>
         <groupId>org.camunda.bpm</groupId>
         <artifactId>camunda-bom</artifactId>
         <version>7.18.0</version>
@@ -44,6 +43,10 @@
       <groupId>org.camunda.bpm.springboot</groupId>
       <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
     </dependency>
+ <dependency>  
+   <groupId>org.springframework.boot</groupId>  
+   <artifactId>spring-boot-starter-thymeleaf</artifactId>  
+</dependency>
 
     <dependency>
       <groupId>org.camunda.bpm</groupId>
@@ -86,9 +89,19 @@
    <version>2.7.0</version>
 </dependency>
 <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>6.0.11</version>
+</dependency>
+<dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-jdbc</artifactId>
       </dependency>
+      <dependency>
+  <groupId>org.camunda.bpm.extension</groupId>
+  <artifactId>camunda-bpm-mail-core</artifactId>
+  <version>1.0.0</version>
+</dependency>
       <dependency>
   <groupId>org.slf4j</groupId>
   <artifactId>slf4j-jdk14</artifactId>
