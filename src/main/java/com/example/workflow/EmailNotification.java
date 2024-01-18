@@ -1,4 +1,9 @@
 package com.example.workflow;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +23,7 @@ import javax.mail.internet.MimeMultipart;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 @Service
@@ -171,14 +177,12 @@ public class EmailNotification {
 	                   multipart.addBodyPart(textBodyPart); // add the text part 
 	                   multipart.addBodyPart(attachmentBodyPart); // add the attachement part 
 	                   message.setContent(multipart);
+	                   
+	                      
 	                    
 	                    
 	                    
-	                    
-	                    
-	                    
-	                    
-	                    
+	                  
 	                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
 	                    transport.connect();
@@ -200,6 +204,8 @@ public class EmailNotification {
 			// TODO Auto-generated method stub
 			
 		}
+	    
+	  
 		
 		 
 
